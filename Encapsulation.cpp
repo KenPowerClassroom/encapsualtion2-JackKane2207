@@ -45,6 +45,17 @@ public:
     double getCurrentTemperature() const {
         return currentTemperature;
     }
+
+
+    bool tempCheck(int tempLimit) 
+    {
+        if (currentTemperature < tempLimit) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 };
 #include <iostream>
 #include <string>
@@ -141,11 +152,12 @@ int main() {
     Thermostat thermostat(18.5);
     HeatingSystem heating;
 
-    if (thermostat.getCurrentTemperature() < 20.0) {
+    if (thermostat.tempCheck(20)) 
+    {
         heating.turnOn();
     }
     else {
-        heating.turnOff();
+        heating.turnOff(); 
     }
     
     //////////////////////////////////////////////////////////////////
