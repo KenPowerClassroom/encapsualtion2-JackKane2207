@@ -73,7 +73,15 @@ public:
     }
 
     void borrowBook() {
-        isAvailable = false;
+        if (isAvailable)//if books available
+        {
+            std::cout << "Book borrowed successfully." << std::endl;
+            isAvailable = false;
+        }
+        else//if book isnt available
+        {
+            std::cout << "Book is not available for borrowing." << std::endl;
+        }
     }
 
     void returnBook() {
@@ -85,13 +93,8 @@ class Library {
 public:
     void processBookBorrowing(Book& book) {
         // Violates Tell, Don't Ask
-        if (book.checkAvailability()) {
-            book.borrowBook();
-            std::cout << "Book borrowed successfully." << std::endl;
-        }
-        else {
-            std::cout << "Book is not available for borrowing." << std::endl;
-        }
+        book.borrowBook();
+
     }
 };
 
