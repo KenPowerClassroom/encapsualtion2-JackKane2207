@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <string>
 class BankAccount {
 private:
     double balance;
@@ -15,8 +15,13 @@ public:
         balance += amount;
     }
 
-    void withdraw(double amount) {
-        balance -= amount;
+    std::string withdraw(double amount) {
+        if (amount > balance)//if withdrawal more than balance
+        {
+            return "withdrawal unsuccessful insufficient balance.\n";//return fail statement
+        }
+        balance -= amount;//take withdrawal from balance
+        return "withdrawal succesful!, New blanace $: " + std::to_string(balance)+"\n";//returnn success statement
     }
 };
 class HeatingSystem {
@@ -127,13 +132,8 @@ int main() {
     BankAccount account(1000.0);
 
     // Violation of Tell, Don't Ask
-    if (account.getBalance() > 500) {
-        account.withdraw(500);
-        std::cout << "Withdrawal successful. New balance: $" << account.getBalance() << std::endl;
-    }
-    else {
-        std::cout << "Insufficient funds for withdrawal." << std::endl;
-    }
+    std::cout << account.withdraw(500);
+
     //////////////////////////////////////////////////////////////////
     // Exercise 2
     //////////////////////////////////////////////////////////////////
