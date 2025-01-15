@@ -115,25 +115,32 @@ public:
     }
 
     void takeDamage(int damage) {
-        health -= damage;
+        if (health > 0)//if player is alive
+        {
+            health -= damage;
+            std::cout << "player took damage!\n";
+        }
+        else
+            std::cout << "player has no health\n";//if player is daed
     }
 
     void useAmmo() {
-        ammo--;
+        if (ammo > 0 && health > 0)//if player is alive and has ammo
+        {
+            std::cout << "Player attacked and used ammo." << std::endl;
+            ammo--;
+        }
+
+        else if (health > 0)//if player is alive and doesnt have ammo
+            std::cout<<"player has no ammo";
     }
 };
 
 class Game {
 public:
     void enemyAttack(Player& player) {
-        if (player.getHealth() > 0 && player.getAmmo() > 0) {
-            player.takeDamage(10);
-            player.useAmmo();
-            std::cout << "Player attacked and used ammo." << std::endl;
-        }
-        else {
-            std::cout << "Player can't respond to attack." << std::endl;
-        }
+        player.takeDamage(10);
+        player.useAmmo();
     }
 };
 
